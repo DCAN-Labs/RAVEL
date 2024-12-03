@@ -1,4 +1,7 @@
-source("./R/utils.R")
-dir   <- file.path("/users/9/reine097/data/fairview-ag/anonymized/skull_stripped_anonymized_sample/")
-masks <- list.files(dir, full.names=TRUE, pattern="*mask*.nii*")
-intersect_mask  <- maskIntersect(masks, output.file=tempfile())
+source("utils.R")
+
+system("sg feczk001")
+
+dir   <- file.path("/home/feczk001/shared/projects/S1067_Loes/data/Fairview-ag/anonymized/csf_masks/")
+masks <- list.files(dir, full.names=TRUE, pattern="*mask*.nii.gz")
+intersect_mask  <- maskIntersect(masks, output.file='intersect_mask.nii.gz')
