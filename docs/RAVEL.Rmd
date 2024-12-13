@@ -6,3 +6,6 @@
 1. Run `normalize_intensity_with_ravel_test.R <input_dir> <output_dir>`
 
    For example: `Rscript normalize_intensity_with_ravel_test.R "/users/9/reine097/data/fairview-ag/anonymized/processed/" "/users/9/reine097/raveled/"`
+2. Run `create_ravel_control_region.R`
+
+   TODO Currently the file paths are hard-coded.  This needs to be generalized.
