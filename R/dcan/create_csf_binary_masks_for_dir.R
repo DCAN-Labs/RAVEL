@@ -1,8 +1,16 @@
 library(fslr)
 library("oro.nifti")
 
-source("create_csf_binary_mask.R")
+source("R/dcan/create_csf_binary_mask.R")
+source("./R/utils.R")
 
-scan_reg_n4_brain <- "/users/9/reine097/data/fairview-ag/anonymized/4_processed/sub-01_ses-01_space-MNI_brain_mprage.nii.gz"
-output_file <- "/users/9/reine097/data/fairview-ag/anonymized/5_segmented/sub-01_ses-01_space-MNI_brain_mprage.nii.gz"
-create_csf_binary_mask(scan_reg_n4_brain, output_file)
+in_dir <- "/users/9/reine097/data/fairview-ag/anonymized/4_processed/"
+in_files <- list.files(path = in_dir,
+                       full.names = TRUE)
+out_dir <- "/users/9/reine097/data/fairview-ag/anonymized/5_csf_masks/"
+ifelse(!dir.exists(out_dir), dir.create(out_dir), "Folder exists already")
+for (scan_reg_n4_brain in in_files) {
+  out_base_name <- basename(scan_reg_n4_brain)
+  output_file <- file.path(out_dir, out_base_name)
+  create_csf_binary_mask(scan_reg_n4_brain, output_file)
+}
