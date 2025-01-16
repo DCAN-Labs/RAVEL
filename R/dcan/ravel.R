@@ -2,6 +2,7 @@ library(pbapply)
 library(neurobase)
 
 source("./normalizeRAVEL.R")
+source("./utils.R")
 
 dir = "/users/9/reine097/data/fairview-ag/anonymized/4_processed/"
 input.files  <- list.files(dir, full.names=TRUE)
@@ -11,7 +12,7 @@ control.mask <- "/users/9/reine097/data/fairview-ag/anonymized/6_control_mask/co
 check_nifti(brain.mask)
 check_nifti(control.mask)
 tryCatch({
-  normalizeRAVEL(input.files, brain.mask = brain.mask, control.mask = control.mask, k=1, returnMatrix=TRUE, WhiteStripe=FALSE)
+  normalizeRAVEL(input.files, brain.mask = brain.mask, control.mask = control.mask, k=1, writeToDisk=TRUE, WhiteStripe=FALSE)
 }, error = function(e) {
   message("Error: ", e)
 })
